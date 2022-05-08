@@ -23,9 +23,14 @@ class Board extends React.Component {
     };
   }
 
+  xIsNext() {
+    const noX = this.state.squares.filter(val => val !== null).length;
+    return noX % 2 === 0;
+  }
+
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
+    squares[i] = this.xIsNext() ? 'X' : 'O';
     this.setState({squares: squares});
   }
 
