@@ -28,9 +28,13 @@ class Board extends React.Component {
     return noX % 2 === 0;
   }
 
+  nextTurn() {
+    return this.xIsNext() ? 'X' : 'O';
+  }
+
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = this.xIsNext() ? 'X' : 'O';
+    squares[i] = this.nextTurn();
     this.setState({squares: squares});
   }
 
@@ -44,7 +48,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.nextTurn()}`;
 
     return (
       <div>
